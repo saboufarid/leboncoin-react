@@ -57,7 +57,7 @@ class App extends Component {
           />
           <Route
             path="/log_in"
-            render={props => <LogIn {...props} user={user} />}
+            render={props => <LogIn {...props} setUser={this.setUser} />}
           />
           <Route
             path="/profile/:id"

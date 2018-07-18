@@ -5,7 +5,9 @@ class SignUp extends React.Component {
   state = {
     email: "",
     password: "",
-    username: ""
+    username: "",
+    partenaires: false,
+    conditions: false
   };
 
   handleChange = event => {
@@ -51,33 +53,108 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} className="form form-signup">
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="text"
-          value={this.state.email}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="email">password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="username">username</label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <input type="submit" value="Valider" />
-      </form>
+      <div className="body">
+        <div className="box_1024 box_content">
+          <div className="left_elts">
+            <h2>Pourquoi créer un compte ?</h2>
+            <div className="elt">
+              <i className="far fa-clock" />
+              <div>
+                <h3>Gagnez du temps</h3>
+                <h4>
+                  Publiez vos annonces rapidement, avec vos informations
+                  pré-remplies chaque fois que vous souhaitez déposer une
+                  nouvelle annonce.
+                </h4>
+              </div>
+            </div>
+
+            <div className="elt">
+              <i className="fas fa-bell" />
+              <div>
+                <h3>Soyez les premiers informés</h3>
+                <h4>
+                  Créez des alertes immo ou Emploi et ne manquez jamais
+                  l'annonce qui vous intéresse.
+                </h4>
+              </div>
+            </div>
+
+            <div className="elt">
+              <i className="fas fa-eye" />
+              <div>
+                <h3>Visibilité</h3>
+                <h4>
+                  Suivez les statistiques de vos annonces (nombre de fois où
+                  votre annonce a été vue, nombre de contacts reçus).
+                </h4>
+              </div>
+            </div>
+          </div>
+
+          <form onSubmit={this.onSubmit} className="form form-signup">
+            <h2>Créer un compte</h2>
+            <hr />
+            <label htmlFor="pseudo">Pseudo</label>
+            <input
+              className="input"
+              id="pseudo"
+              name="username"
+              type="text"
+              required
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="email">Email</label>
+            <input
+              className="input"
+              id="email"
+              name="email"
+              type="email"
+              required
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="password">password</label>
+            <input
+              className="input"
+              id="password"
+              name="password"
+              type="password"
+              required
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+            <div>
+              <input
+                id="parteners"
+                name="parteners"
+                type="checkbox"
+                value={this.state.parteners}
+                onChange={this.handleChange}
+              />
+              Je souhaite recevoir des offres des partenaires du site leboncoin
+              susceptibles de m'intéresser
+            </div>
+            <div>
+              <input
+                id="conditions"
+                name="conditions"
+                type="checkbox"
+                required
+                value={this.state.conditions}
+                onChange={this.handleChange}
+              />
+              « J'accepte les <span>Conditions Générales de Vente</span> »
+            </div>
+            <input
+              className="input submit"
+              type="submit"
+              value="Créer mon Compte Personnel"
+            />
+          </form>
+        </div>
+      </div>
     );
   }
 }

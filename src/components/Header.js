@@ -10,31 +10,43 @@ class Header extends React.Component {
   renderNav() {
     if (this.props.user._id) {
       return (
-        <React.Fragment>
-          <li>
+        <div className="right_menu">
+          <li className="menuItem">
+            <NavLink to="/" onClick={this.onLogOut}>
+              Déconnexion
+            </NavLink>
+          </li>
+          <li className="menuItem">
             <NavLink to={"/profile/" + this.props.user._id}>
               {this.props.user.username}
             </NavLink>
           </li>
-          <li>
-            <button onClick={this.onLogOut}>Déconnexion</button>
-          </li>
-        </React.Fragment>
+        </div>
       );
     }
-    return <NavLink to="/sign_up">Créer un compte</NavLink>;
+    return (
+      <div className="right_menu">
+        <li className="menuItem">
+          <NavLink to="/log_in">Se connecter</NavLink>
+        </li>
+        <li className="menuItem">
+          <NavLink to="/sign_up">Créer un compte</NavLink>
+        </li>
+      </div>
+    );
   }
   render() {
     return (
       <header>
-        <h1>leboncoin</h1>
-        <ul className="nav-list">
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          {this.renderNav()}
-        </ul>
-        <hr />
+        <div className="box_1024">
+          <img src="assets/image/logo.png" alt="" />
+          <ul className="nav-list">
+            <li>
+              <NavLink to="/">Offre</NavLink>
+            </li>
+            {this.renderNav()}
+          </ul>
+        </div>
       </header>
     );
   }
