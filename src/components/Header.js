@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 
 class Header extends React.Component {
@@ -10,18 +10,26 @@ class Header extends React.Component {
   renderNav() {
     if (this.props.user._id) {
       return (
-        <div className="right_menu">
-          <li className="menuItem">
-            <NavLink to="/" onClick={this.onLogOut}>
-              Déconnexion
-            </NavLink>
+        <Fragment>
+          <li>
+            <NavLink to="/publish">Déposer une annonce</NavLink>
           </li>
-          <li className="menuItem">
-            <NavLink to={"/profile/" + this.props.user._id}>
-              {this.props.user.username}
-            </NavLink>
+          <li>
+            <NavLink to="/">Offre</NavLink>
           </li>
-        </div>
+          <div className="right_menu">
+            <li className="menuItem">
+              <NavLink to="/" onClick={this.onLogOut}>
+                Déconnexion
+              </NavLink>
+            </li>
+            <li className="menuItem">
+              <NavLink to={"/profile/" + this.props.user._id}>
+                {this.props.user.username}
+              </NavLink>
+            </li>
+          </div>
+        </Fragment>
       );
     }
     return (
@@ -40,12 +48,7 @@ class Header extends React.Component {
       <header>
         <div className="box_1024">
           <img src="assets/image/logo.png" alt="" />
-          <ul className="nav-list">
-            <li>
-              <NavLink to="/">Offre</NavLink>
-            </li>
-            {this.renderNav()}
-          </ul>
+          <ul className="nav-list">{this.renderNav()}</ul>
         </div>
       </header>
     );

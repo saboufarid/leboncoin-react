@@ -1,18 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import AdSummary from "../components/AdSummary";
 
 class Home extends React.Component {
+  state = {
+    data: []
+  };
+
+  renderAd() {
+    let components = [];
+    for (let ad of this.state.data) {
+      components.push(<AdSummary key={ad._id} ad={ad} />);
+    }
+    return components;
+  }
+
   render() {
     return (
-      <React.Fragment>
+      <div className="box_1024 column">
         <h2>Liste des annonces</h2>
-        <ul>
-          <li>
-            <Link to="/offer/1">Annonce 1</Link>
-          </li>
-        </ul>
-      </React.Fragment>
+        <ul className="ads">{this.renderAd()}</ul>
+      </div>
     );
+  }
+
+  componentDidMount() {
+    axios
+      .get("https://leboncoin-api.herokuapp.com/api/offer")
+      .then(response => {
+        if (response.data) {
+          this.setState({
+            data: response.data
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
 
